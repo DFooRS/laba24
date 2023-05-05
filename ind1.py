@@ -242,14 +242,13 @@ def main(command_line=None):
     db_path = Path(args.db)
     create_db(db_path)
 
-    if args.command == "add":
-        add_product(db_path, args.name, args.shop, args.cost)
-
-    elif args.command == "list":
-        product_list(select_all(db_path))
-
-    elif args.command == "select":
-        product_list(select_by_shop(db_path, args.shop))
+    match args.command:
+        case 'add':
+            add_product(db_path, args.name, args.shop, args.cost)
+        case 'list':
+            product_list(select_all(db_path))
+        case 'select':
+            product_list(select_by_shop(db_path, args.shop))
 
 
 if __name__ == '__main__':
